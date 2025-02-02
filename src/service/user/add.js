@@ -62,7 +62,7 @@ export const deleteUser = {
 
 export const updateUser = {
   process: async params => {
-    const options = { where: { id: params.id } };
+    const options = { where: { email: params.email } };
     const userDetails = await userRepository.get(options);
     if (!userDetails) {
       throw Http.ConflictError(`user not exist for this ${params.id}`);
@@ -75,7 +75,6 @@ export const updateUser = {
     }
     const userData = {
       name: params.name ?? userDetails.name,
-      email: params.email ?? userDetails.email,
       address: params.address ?? userDetails.address,
       contact_number: params.contact_number ?? userDetails.contact_number,
       password: hashedPassword,
@@ -87,29 +86,25 @@ export const updateUser = {
 
 export const updatePatientDetails = {
   process: async params => {
-    let options = { where: { id: params.id } };
-    const userDetails = await userRepository.get(options);
-    if (!userDetails) {
-      throw Http.ConflictError(`user not exist for this ${params.id}`);
-    }
-
     const patient = await userRepository.get({
       where: {
-        email: params.email,
+        email: params.patient_email,
       },
     });
     if (!patient) {
       throw new Http.NotFoundError('this patient do not exists');
     }
 
-    options = {
-      user_id: patient.id,
+    const options = {
+      where: {
+        user_id: patient.id,
+      },
     };
 
     const updatedData = {
       medical_history: params.medical_history,
     };
-    const updatedUser = await userRepository.update(updatedData, options);
+    const updatedUser = await patientRepository.update(updatedData, options);
     return updatedUser;
   },
 };

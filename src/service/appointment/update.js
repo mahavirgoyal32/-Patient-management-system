@@ -40,7 +40,13 @@ export const updateAppointment = {
           patient_id: patient.id,
           appointment_duration: params.appointment_duration || 30,
         },
-        { transaction },
+        {
+          where: {
+            doctor_id,
+            patient_id: patient.id,
+          },
+          transaction,
+        },
       );
 
       await transaction.commit();

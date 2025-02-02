@@ -10,17 +10,18 @@
     "seed-up": "npx sequelize db:seed:all",
     "seed-down": "npx sequelize db:seed:undo:all",
     "lint": "eslint \"**/*.js\"",
-    "lintfix": "eslint \"**/*.js\" --fix"
+    "lintfix": "eslint \"**/*.js\" --fix",
+    "start": "node src/app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "bcryptjs": "2.4.3",
     "debug": "4.3.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "dotenv": "16.4.5",
+    "express": "4.19.2",
     "joi": "17.13.3",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "9.0.2",
     "mysql2": "3.10.1",
     "path": "0.12.7",
     "sequelize": "6.37.3",

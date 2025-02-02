@@ -8,9 +8,9 @@ export const router = Router();
 
 router.post('/register', requestValidator(Validations.createUserBody, CONSTANTS.REQUEST.BODY), aeh(userController.createUser));
 
-router.post('/update/details', requestValidator(Validations.UpdateUserBody, CONSTANTS.REQUEST.BODY), authMiddleware, aeh(userController.createUser));
+router.post('/update/details', requestValidator(Validations.UpdateUserBody, CONSTANTS.REQUEST.BODY), authMiddleware, aeh(userController.updateUser));
 
-router.post('/update/patient/details', requestValidator(Validations.UpdatePatientBody, CONSTANTS.REQUEST.BODY), authMiddleware, aeh(userController.createUser));
+router.post('/update/patient/details', requestValidator(Validations.UpdatePatientBody, CONSTANTS.REQUEST.BODY), authMiddleware, aeh(userController.updatePatientDetails));
 
 router.post(
   '/create/user/:type',
@@ -34,7 +34,7 @@ router.post(
   requestValidator(Validations.createAppointmentHeader, CONSTANTS.REQUEST.HEADERS),
   requestValidator(Validations.createAppointmentBody, CONSTANTS.REQUEST.BODY),
   authMiddleware,
-  aeh(appointmentController.createAppointment),
+  aeh(appointmentController.updateAppointment),
 );
 
 router.get('/get/appointments', requestValidator(Validations.createAppointmentHeader, CONSTANTS.REQUEST.HEADERS), authMiddleware, aeh(appointmentController.getAllAppointments));
