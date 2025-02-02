@@ -54,7 +54,7 @@ Once the app is running, you can use the following API routes to interact with t
 | **Endpoint** | **Method** | **Description** | **Access** |
 |-------------|-----------|-----------------|------------|
 | `/create/appointment` | `POST` | Book an appointment | Patients |
-| `/update/appointment` | `PUT` | Update an appointment | Doctors |
+| `/update/appointment` | `PUT` | Update an appointment | Patients | Admin |
 | `/get/appointments` | `GET` | Retrieve appointments (filtered by role) | Patients, Doctors, Admins |
 
 ### **🔹 User Management**  
